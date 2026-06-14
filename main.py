@@ -62,6 +62,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     await update.message.reply_text(answer)
+
 def main():
     app = Application.builder().token(TELEGRAM_TOKEN).build()
 
