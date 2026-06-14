@@ -66,9 +66,11 @@ def main():
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("today", today))
-app.add_handler(
-    MessageHandler(filters.TEXT & ~filters.COMMAND, analyze)
-)
+
+    app.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, analyze)
+    )
+
     app.run_polling()
 
 if __name__ == "__main__":
