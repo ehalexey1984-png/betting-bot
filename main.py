@@ -1,6 +1,12 @@
 import requests
 from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import (
+    Application,
+    CommandHandler,
+    ContextTypes,
+    MessageHandler,
+    filters,
+)
 import os
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
