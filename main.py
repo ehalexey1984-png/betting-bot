@@ -39,7 +39,28 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
         text += f"{comp}\n{home} vs {away}\n\n"
 
     await update.message.reply_text(text)
+async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text
 
+    parts = text.split("\n")
+
+    if len(parts) < 3:
+        await update.message.reply_text(
+            "Формат:\n\nСсылка\nРынок\nКоэффициент"
+        )
+        return
+
+    url = parts[0].strip()
+    market = parts[1].strip()
+    odds = parts[2].strip()
+
+    answer = (
+        f"Ссылка получена:\n{url}\n\n"
+        f"Рынок:\n{market}\n\n"
+        f"Коэффициент:\n{odds}"
+    )
+
+    await update.message.reply_text(answer)
 def main():
     app = Application.builder().token(TELEGRAM_TOKEN).build()
 
