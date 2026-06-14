@@ -39,6 +39,7 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
         text += f"{comp}\n{home} vs {away}\n\n"
 
     await update.message.reply_text(text)
+
 async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
 
