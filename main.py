@@ -41,12 +41,40 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(text)
 
 async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
     text = update.message.text
 
     parts = text.split("\n")
 
     if len(parts) < 3:
         await update.message.reply_text(
+            "Формат:\n\nСсылка\nРынок\nКоэффициент"
+        )
+        return
+
+    market = parts[1].strip()
+
+    try:
+        odds = float(parts[2].strip())
+    except:
+        await update.message.reply_text("Неверный коэффициент")
+        return
+
+    probability = 60
+
+    fair_odds = round(100 / probability, 2)
+
+    ev = round((probability / 100 * odds - 1) * 100, 2)
+
+    answer = (
+        f"Рынок: {market}\n"
+        f"Коэффициент: {odds}\n\n"
+        f"Вероятность: {probability}%\n"
+        f"Справедливый кэф: {fair_odds}\n"
+        f"EV: {ev}%"
+    )
+
+    await update.message.reply_text(answer)
             "Формат:\n\nСсылка\nРынок\nКоэффициент"
         )
         return
