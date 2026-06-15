@@ -75,21 +75,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     await update.message.reply_text(answer)
-            "Формат:\n\nСсылка\nРынок\nКоэффициент"
-        )
-        return
-
-    url = parts[0].strip()
-    market = parts[1].strip()
-    odds = parts[2].strip()
-
-    answer = (
-        f"Ссылка получена:\n{url}\n\n"
-        f"Рынок:\n{market}\n\n"
-        f"Коэффициент:\n{odds}"
-    )
-
-    await update.message.reply_text(answer)
+         
 
 def main():
     app = Application.builder().token(TELEGRAM_TOKEN).build()
