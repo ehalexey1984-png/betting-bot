@@ -75,13 +75,21 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     ev = round((probability / 100 * odds - 1) * 100, 2)
 
-    answer = (
-        f"Рынок: {market}\n"
-        f"Коэффициент: {odds}\n\n"
-        f"Вероятность: {probability}%\n"
-        f"Справедливый кэф: {fair_odds}\n"
-        f"EV: {ev}%"
-    )
+  if ev > 5:
+    verdict = "✅ VALUE BET"
+elif ev > 0:
+    verdict = "⚠️ Небольшой перевес"
+else:
+    verdict = "❌ Нет валуя"
+
+answer = (
+    f"Рынок: {market}\n"
+    f"Коэффициент: {odds}\n\n"
+    f"Вероятность: {probability}%\n"
+    f"Справедливый кэф: {fair_odds}\n"
+    f"EV: {ev}%\n\n"
+    f"{verdict}"
+)
 
     await update.message.reply_text(answer)
          
