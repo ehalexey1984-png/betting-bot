@@ -60,7 +60,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Неверный коэффициент")
         return
 
-    if "ТБ 2.5" in market:
+  if "ТБ 2.5" in market:
     probability = 55
 elif "ТМ 2.5" in market:
     probability = 53
