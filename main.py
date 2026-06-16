@@ -60,16 +60,16 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Неверный коэффициент")
         return
 
-  if "ТБ 2.5" in market:
-    probability = 55
-elif "ТМ 2.5" in market:
-    probability = 53
-elif "П1" in market:
-    probability = 58
-elif "П2" in market:
-    probability = 42
-else:
-    probability = 50
+    if "ТБ 2.5" in market:
+        probability = 55
+    elif "ТМ 2.5" in market:
+        probability = 53
+    elif "П1" in market:
+        probability = 58
+    elif "П2" in market:
+        probability = 42
+    else:
+        probability = 50
 
     fair_odds = round(100 / probability, 2)
 
