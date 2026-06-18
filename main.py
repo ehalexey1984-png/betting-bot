@@ -57,36 +57,36 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         odds = float(parts[2].strip())
     except:
         await update.message.reply_text("Неверный коэффициент")
-    return
+        return
 
     if "ТБ 2.5" in market:
-    probability = 55
+        probability = 55
     elif "ТМ 2.5" in market:
-    probability = 53
+        probability = 53
     elif "П1" in market:
-    probability = 58
+        probability = 58
     elif "П2" in market:
-    probability = 42
+        probability = 42
     else:
-    probability = 50
+        probability = 50
 
     fair_odds = round(100 / probability, 2)
     ev = round((probability / 100 * odds - 1) * 100, 2)
 
     if ev > 5:
-    verdict = "✅ VALUE BET"
+        verdict = "✅ VALUE BET"
     elif ev > 0:
-    verdict = "⚠️ Небольшой перевес"
+        verdict = "⚠️ Небольшой перевес"
     else:
-    verdict = "❌ Нет валуя"
+        verdict = "❌ Нет валуя"
 
     answer = (
-    f"Рынок: {market}\n"
-    f"Коэффициент: {odds}\n\n"
-    f"Вероятность: {probability}%\n"
-    f"Справедливый кэф: {fair_odds}\n"
-    f"EV: {ev}%\n\n"
-    f"{verdict}"
+        f"Рынок: {market}\n"
+        f"Коэффициент: {odds}\n\n"
+        f"Вероятность: {probability}%\n"
+        f"Справедливый кэф: {fair_odds}\n"
+        f"EV: {ev}%\n\n"
+        f"{verdict}"
     )
 
     await update.message.reply_text(answer)
