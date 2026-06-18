@@ -71,11 +71,11 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         probability = 50
 
-    fair_odds = round(100 / probability, 2)
+        fair_odds = round(100 / probability, 2)
 
     ev = round((probability / 100 * odds - 1) * 100, 2)
 
-     if ev > 5:
+    if ev > 5:
         verdict = "✅ VALUE BET"
     elif ev > 0:
         verdict = "⚠️ Небольшой перевес"
