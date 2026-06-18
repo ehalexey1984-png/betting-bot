@@ -48,15 +48,15 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if len(parts) < 3:
         await update.message.reply_text(
             "Формат:\n\nСсылка\nРынок\nКоэффициент"
-    )
-    return
+        )
+        return
 
     market = parts[1].strip()
 
     try:
-    odds = float(parts[2].strip())
+        odds = float(parts[2].strip())
     except:
-    await update.message.reply_text("Неверный коэффициент")
+        await update.message.reply_text("Неверный коэффициент")
     return
 
     if "ТБ 2.5" in market:
