@@ -92,9 +92,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     await update.message.reply_text(answer)
-)
 
-    await update.message.reply_text(answer)
          
 
 def main():
