@@ -61,17 +61,17 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     if "ТБ 2.5" in market:
-        probability = 55
-    elif "ТМ 2.5" in market:
-        probability = 53
-    elif "П1" in market:
-        probability = 58
-    elif "П2" in market:
-        probability = 42
-    else:
-        probability = 50
+    probability = 55
+elif "ТМ 2.5" in market:
+    probability = 53
+elif "П1" in market:
+    probability = 58
+elif "П2" in market:
+    probability = 42
+else:
+    probability = 50
 
-        fair_odds = round(100 / probability, 2)
+fair_odds = round(100 / probability, 2)
 
     ev = round((probability / 100 * odds - 1) * 100, 2)
 
