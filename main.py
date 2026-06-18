@@ -43,24 +43,23 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
+parts = text.split("\n")
 
-    parts = text.split("\n")
+if len(parts) < 3:
+    await update.message.reply_text(
+        "Формат:\n\nСсылка\nРынок\nКоэффициент"
+    )
+    return
 
-    if len(parts) < 3:
-        await update.message.reply_text(
-            "Формат:\n\nСсылка\nРынок\nКоэффициент"
-        )
-        return
+market = parts[1].strip()
 
-    market = parts[1].strip()
+try:
+    odds = float(parts[2].strip())
+except:
+    await update.message.reply_text("Неверный коэффициент")
+    return
 
-    try:
-        odds = float(parts[2].strip())
-    except:
-        await update.message.reply_text("Неверный коэффициент")
-        return
-
-    if "ТБ 2.5" in market:
+if "ТБ 2.5" in market:
     probability = 55
 elif "ТМ 2.5" in market:
     probability = 53
@@ -72,26 +71,25 @@ else:
     probability = 50
 
 fair_odds = round(100 / probability, 2)
+ev = round((probability / 100 * odds - 1) * 100, 2)
 
-    ev = round((probability / 100 * odds - 1) * 100, 2)
+if ev > 5:
+    verdict = "✅ VALUE BET"
+elif ev > 0:
+    verdict = "⚠️ Небольшой перевес"
+else:
+    verdict = "❌ Нет валуя"
 
-    if ev > 5:
-        verdict = "✅ VALUE BET"
-    elif ev > 0:
-        verdict = "⚠️ Небольшой перевес"
-    else:
-        verdict = "❌ Нет валуя"
+answer = (
+    f"Рынок: {market}\n"
+    f"Коэффициент: {odds}\n\n"
+    f"Вероятность: {probability}%\n"
+    f"Справедливый кэф: {fair_odds}\n"
+    f"EV: {ev}%\n\n"
+    f"{verdict}"
+)
 
-    answer = (
-        f"Рынок: {market}\n"
-        f"Коэффициент: {odds}\n\n"
-        f"Вероятность: {probability}%\n"
-        f"Справедливый кэф: {fair_odds}\n"
-        f"EV: {ev}%\n\n"
-        f"{verdict}"
-    )
-
-    await update.message.reply_text(answer)
+await update.message.reply_text(answer)
 
          
 
