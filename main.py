@@ -47,7 +47,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if len(parts) < 3:
         await update.message.reply_text(
-        "Формат:\n\nСсылка\nРынок\nКоэффициент"
+            "Формат:\n\nСсылка\nРынок\nКоэффициент"
     )
     return
 
