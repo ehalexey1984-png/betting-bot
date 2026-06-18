@@ -43,7 +43,7 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
-parts = text.split("\n")
+    parts = text.split("\n")
 
 if len(parts) < 3:
     await update.message.reply_text(
