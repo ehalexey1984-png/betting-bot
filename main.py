@@ -75,6 +75,13 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     fair_odds = round(100 / probability, 2)
     ev = round((probability / 100 * odds - 1) * 100, 2)
 
+    kelly = ((odds * probability / 100) - 1) / (odds - 1)
+
+    if kelly < 0:
+        kelly = 0
+
+    stake_percent = round(kelly * 25, 2)
+
     if ev > 5:
         verdict = "✅ VALUE BET"
     elif ev > 0:
