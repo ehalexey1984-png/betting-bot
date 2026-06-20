@@ -90,6 +90,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         verdict = "❌ Нет валуя"
 
     answer = (
+        f"Матч: {match_name}\n\n"
         f"Рынок: {market}\n"
         f"Коэффициент: {odds}\n\n"
         f"Вероятность: {probability}%\n"
