@@ -95,7 +95,8 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Вероятность: {probability}%\n"
         f"Справедливый кэф: {fair_odds}\n"
         f"EV: {ev}%\n\n"
-        f"{verdict}"
+        f"{verdict}\n\n"
+        f"Размер ставки: {stake_percent}% банка"
     )
 
     await update.message.reply_text(answer)
