@@ -52,7 +52,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "Формат:\n\nСсылка\nРынок\nКоэффициент"
         )
         return
-
+    match_name = parts[0].strip()
     market = parts[1].strip()
 
     try:
