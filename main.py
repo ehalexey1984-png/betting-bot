@@ -109,7 +109,6 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(answer)
 
          
-async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def win(update: Update, context: ContextTypes.DEFAULT_TYPE):
     results["wins"] += 1
     await update.message.reply_text("✅ Победа записана")
