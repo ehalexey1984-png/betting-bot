@@ -109,7 +109,24 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(answer)
 
          
+async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
+    total = results["wins"] + results["losses"]
+
+    if total == 0:
+        await update.message.reply_text("Статистика пока пустая")
+        return
+
+    winrate = round(results["wins"] / total * 100, 2)
+
+    text = (
+        f"Ставок: {total}\n"
+        f"Побед: {results['wins']}\n"
+        f"Поражений: {results['losses']}\n"
+        f"Winrate: {winrate}%"
+    )
+
+    await update.message.reply_text(text)
 def main():
     app = Application.builder().token(TELEGRAM_TOKEN).build()
 
