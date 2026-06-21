@@ -138,7 +138,9 @@ def main():
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("today", today))
-
+    app.add_handler(CommandHandler("win", win))
+    app.add_handler(CommandHandler("loss", loss))
+    app.add_handler(CommandHandler("stats", stats))
     app.add_handler(
         MessageHandler(filters.TEXT & ~filters.COMMAND, analyze)
     )
