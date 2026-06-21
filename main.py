@@ -82,13 +82,16 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     stake_percent = round(kelly * 25, 2)
 
-    if ev > 5:
+    if ev >= 10:
+        verdict = "🔥 Сильный валуй"
+    elif ev >= 5:
         verdict = "✅ VALUE BET"
-    elif ev > 0:
-        verdict = "⚠️ Небольшой перевес"
+    elif ev >= 2:
+        verdict = "⚠️ Небольшой валуй"
+    elif ev >= 0:
+        verdict = "➖ Почти по линии"
     else:
         verdict = "❌ Нет валуя"
-
     answer = (
         f"Матч: {match_name}\n\n"
         f"Рынок: {market}\n"
