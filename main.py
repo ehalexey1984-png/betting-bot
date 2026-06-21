@@ -123,7 +123,10 @@ async def win(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("✅ Победа записана")
 
 async def loss(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
     results["losses"] += 1
+    results["profit"] -= 1
+
     await update.message.reply_text("❌ Поражение записано")
     
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
