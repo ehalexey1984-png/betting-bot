@@ -110,7 +110,13 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
          
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def win(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    results["wins"] += 1
+    await update.message.reply_text("✅ Победа записана")
 
+async def loss(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    results["losses"] += 1
+    await update.message.reply_text("❌ Поражение записано")
     total = results["wins"] + results["losses"]
 
     if total == 0:
