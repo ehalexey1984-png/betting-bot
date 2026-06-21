@@ -137,7 +137,7 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     winrate = round(results["wins"] / total * 100, 2)
-
+    roi = round(results["profit"] / total * 100, 2)
     text = (
         f"Ставок: {total}\n"
         f"Побед: {results['wins']}\n"
