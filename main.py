@@ -15,7 +15,8 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 FOOTBALL_API_KEY = os.getenv("FOOTBALL_API_KEY")
 results = {
     "wins": 0,
-    "losses": 0
+    "losses": 0,
+    "profit": 0
 }
 HEADERS = {"X-Auth-Token": FOOTBALL_API_KEY}
 
