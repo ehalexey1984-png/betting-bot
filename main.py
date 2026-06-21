@@ -142,8 +142,10 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Ставок: {total}\n"
         f"Побед: {results['wins']}\n"
         f"Поражений: {results['losses']}\n"
-        f"Winrate: {winrate}%"
-    )
+        f"Winrate: {winrate}%\n\n"
+        f"Прибыль: {round(results['profit'],2)} unit\n"
+        f"ROI: {roi}%"
+)
 
     await update.message.reply_text(text)
 def main():
