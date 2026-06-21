@@ -67,12 +67,28 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if "ТБ 2.5" in market:
         probability = 55
+
     elif "ТМ 2.5" in market:
         probability = 53
+
+    elif "ОЗ Да" in market:
+        probability = 54
+
+    elif "ОЗ Нет" in market:
+        probability = 51
+
     elif "П1" in market:
         probability = 58
+
     elif "П2" in market:
         probability = 42
+
+    elif "Ф1" in market:
+        probability = 52
+
+    elif "Ф2" in market:
+        probability = 48
+
     else:
         probability = 50
 
