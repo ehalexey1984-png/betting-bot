@@ -1,4 +1,4 @@
-
+#
 
 import requests
 from telegram import Update
@@ -111,7 +111,15 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
          
 async def win(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
     results["wins"] += 1
+
+    try:
+        odds = float(context.args[0])
+        results["profit"] += odds - 1
+    except:
+        results["profit"] += 1
+
     await update.message.reply_text("✅ Победа записана")
 
 async def loss(update: Update, context: ContextTypes.DEFAULT_TYPE):
