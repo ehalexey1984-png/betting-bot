@@ -145,14 +145,6 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         probability = book_probability
 
-        probability = round(min(probability, 95), 1)
-
-    elif "ОЗ Нет" in market:
-        probability = book_probability + 2
-
-    else:
-        probability = book_probability
-
     probability = round(min(probability, 95), 1)
 
     fair_odds = round(100 / probability, 2)
