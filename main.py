@@ -89,7 +89,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif "ОЗ Нет" in market:
         probability = 51
 
-    elif "1Х" in market:
+    elif market.upper() in ["1Х", "1X"]:
         probability = 72
 
     elif "Х2" in market:
