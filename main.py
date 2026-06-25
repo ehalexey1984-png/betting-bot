@@ -89,14 +89,14 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif "ОЗ Нет" in market:
         probability = 51
 
-    elif market.upper() in ["1Х", "1X"]:
+    elif market.replace(" ", "").upper() in ["1Х", "1X"]:
         probability = 72
 
-    elif "Х2" in market:
-       probability = 68
+    elif market.replace(" ", "").upper() in ["Х2", "X2"]:
+        probability = 68
 
-    elif "12" in market:
-       probability = 78
+    elif market.replace(" ", "") == "12":
+        probability = 78
 
     elif "П1" in market:
         probability = 58
