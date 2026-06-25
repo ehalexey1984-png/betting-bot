@@ -65,53 +65,95 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Неверный коэффициент")
         return
 
-    if "ТБ 1.5" in market:
-        probability = 75
+    book_probability = 100 / odds
 
-    elif "ТМ 1.5" in market:
-        probability = 25
-
-    elif "ТБ 2.5" in market:
-        probability = 55
-
-    elif "ТМ 2.5" in market:
-        probability = 53
-
-    elif "ТБ 3.5" in market:
-        probability = 35
-
-    elif "ТМ 3.5" in market:
-        probability = 65
-
-    elif "ОЗ Да" in market:
-        probability = 54
-
-    elif "ОЗ Нет" in market:
-        probability = 51
-
-    elif market.replace(" ", "").upper() in ["1Х", "1X"]:
-        probability = 72
-
-    elif market.replace(" ", "").upper() in ["Х2", "X2"]:
-        probability = 68
-
-    elif market.replace(" ", "") == "12":
-        probability = 78
-
-    elif "П1" in market:
-        probability = 58
+    if "П1" in market:
+        probability = book_probability + 3
 
     elif "П2" in market:
-        probability = 42
+        probability = book_probability + 2
 
-    elif "Ф1" in market:
-        probability = 52
+    elif "1Х" in market:
+        probability = book_probability + 2
 
-    elif "Ф2" in market:
-        probability = 48
+    elif "Х2" in market:
+        probability = book_probability + 2
+
+    elif "12" in market:
+        probability = book_probability + 2
+
+    elif "ТБ 1.5" in market:
+        probability = book_probability + 4
+
+    elif "ТМ 1.5" in market:
+        probability = book_probability + 4
+
+    elif "ТБ 2.5" in market:
+        probability = book_probability + 3
+
+    elif "ТМ 2.5" in market:
+        probability = book_probability + 3
+
+    elif "ТБ 3.5" in market:
+        probability = book_probability + 2
+
+    elif "ТМ 3.5" in market:
+        probability = book_probability + 2
+
+    elif "ОЗ Да" in market:
+        book_probability = 100 / odds
+
+    if "П1" in market:
+        probability = book_probability + 3
+
+    elif "П2" in market:
+        probability = book_probability + 2
+
+    elif "1Х" in market:
+        probability = book_probability + 2
+
+    elif "Х2" in market:
+        probability = book_probability + 2
+
+    elif "12" in market:
+        probability = book_probability + 2
+
+    elif "ТБ 1.5" in market:
+        probability = book_probability + 4
+
+    elif "ТМ 1.5" in market:
+        probability = book_probability + 4
+
+    elif "ТБ 2.5" in market:
+        probability = book_probability + 3
+
+    elif "ТМ 2.5" in market:
+        probability = book_probability + 3
+
+    elif "ТБ 3.5" in market:
+        probability = book_probability + 2
+
+    elif "ТМ 3.5" in market:
+        probability = book_probability + 2
+
+    elif "ОЗ Да" in market:
+        probability = book_probability + 2
+
+    elif "ОЗ Нет" in market:
+        probability = book_probability + 2
 
     else:
-        probability = 50
+        probability = book_probability
+
+    probability = round(min(probability, 95), 1)probability = book_probability + 2
+
+    elif "ОЗ Нет" in market:
+        probability = book_probability + 2
+
+    else:
+        probability = book_probability
+
+    probability = round(min(probability, 95), 1)
 
     fair_odds = round(100 / probability, 2)
     ev = round((probability / 100 * odds - 1) * 100, 2)
