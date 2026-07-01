@@ -88,27 +88,6 @@ async def form(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(text)
 
-    team_id = teams[0]["id"]
-
-    url = f"https://api.football-data.org/v4/teams/{team_id}/matches?limit=5"
-
-    r = requests.get(url, headers=HEADERS)
-    data = r.json()
-
-    matches = data.get("matches", [])
-
-    text = f"Последние матчи {team_name}:\n\n"
-
-    for m in matches:
-        home = m["homeTeam"]["name"]
-        away = m["awayTeam"]["name"]
-
-        home_score = m["score"]["fullTime"]["home"]
-        away_score = m["score"]["fullTime"]["away"]
-
-        text += f"{home} {home_score}:{away_score} {away}\n"
-
-    await update.message.reply_text(text)
 async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
