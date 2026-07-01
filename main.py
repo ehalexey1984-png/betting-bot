@@ -87,7 +87,6 @@ async def form(update: Update, context: ContextTypes.DEFAULT_TYPE):
         text += f"{home} {home_score}:{away_score} {away}\n"
 
     await update.message.reply_text(text)
-        return
 
     team_id = teams[0]["id"]
 
