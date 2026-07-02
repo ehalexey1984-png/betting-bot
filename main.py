@@ -30,6 +30,13 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
     url = "https://v3.football.api-sports.io/fixtures?next=10"
 
     r = requests.get(url, headers=HEADERS)
+    
+
+    await update.message.reply_text(str(r.status_code))
+
+    await update.message.reply_text(r.text[:350])
+
+    return
     data = r.json()
 
     fixtures = data.get("response", [])
