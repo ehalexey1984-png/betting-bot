@@ -12,7 +12,7 @@ from telegram.ext import (
 import os
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-FOOTBALL_API_KEY = os.getenv("FOOTBALL_API_KEY")
+API_FOOTBALL_KEY = os.getenv("API_FOOTBALL_KEY")
 results = {
     "wins": 0,
     "losses": 0,
