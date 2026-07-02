@@ -26,25 +26,28 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Бот запущен. Используй /today")
 
 async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    url = "https://api.football-data.org/v4/matches"
+
+    url = "https://v3.football.api-sports.io/fixtures?next=10"
 
     r = requests.get(url, headers=HEADERS)
     data = r.json()
 
-    matches = data.get("matches", [])
+    fixtures = data.get("response", [])
 
-    if not matches:
-        await update.message.reply_text("Нет матчей сегодня")
+    if not fixtures:
+        await update.message.reply_text("Матчей не найдено")
         return
 
-    text = "Матчи сегодня:\n\n"
+    text = "Ближайшие матчи:\n\n"
 
-    for m in matches[:15]:
-        home = m["homeTeam"]["name"]
-        away = m["awayTeam"]["name"]
-        comp = m["competition"]["name"]
+    for match in fixtures:
 
-        text += f"{comp}\n{home} vs {away}\n\n"
+        home = match["teams"]["home"]["name"]
+        away = match["teams"]["away"]["name"]
+
+        league = match["league"]["name"]
+
+        text += f"{league}\n{home} - {away}\n\n"
 
     await update.message.reply_text(text)
 async def form(update: Update, context: ContextTypes.DEFAULT_TYPE):
