@@ -60,6 +60,32 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
         text += f"{league}\n{home} - {away}\n\n"
 
     await update.message.reply_text(text)
+async def team(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    if len(context.args) == 0:
+        await update.message.reply_text("Использование:\n/team Arsenal")
+        return
+
+    name = " ".join(context.args)
+
+    url = f"https://v3.football.api-sports.io/teams?search={name}"
+
+    r = requests.get(url, headers=HEADERS)
+    data = r.json()
+
+    response = data.get("response", [])
+
+    if not response:
+        await update.message.reply_text("Команда не найдена")
+        return
+
+    team = response[0]
+
+    await update.message.reply_text(
+        f"ID: {team['team']['id']}\n"
+        f"Команда: {team['team']['name']}\n"
+        f"Страна: {team['team']['country']}"
+    )
 async def form(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if len(context.args) == 0:
