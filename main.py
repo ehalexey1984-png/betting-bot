@@ -27,7 +27,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    url = "https://v3.football.api-sports.io/fixtures?next=10"
+    from datetime import datetime
+
+    today = datetime.now().strftime("%Y-%m-%d")
+    url = f"https://v3.football.api-sports.io/fixtures?date={today}"
 
     r = requests.get(url, headers=HEADERS)
     
