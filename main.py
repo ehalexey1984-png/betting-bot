@@ -308,6 +308,7 @@ def main():
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("form", form))
     app.add_handler(CommandHandler("today", today))
+    app.add_handler(CommandHandler("team", team))
     app.add_handler(CommandHandler("win", win))
     app.add_handler(CommandHandler("loss", loss))
     app.add_handler(CommandHandler("stats", stats))
