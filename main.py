@@ -147,7 +147,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     market = parts[2].strip()
 
     try:
-        odds = float(parts[2].strip())
+        odds = float(parts[3].strip())
     except:
         await update.message.reply_text("Неверный коэффициент")
         return
