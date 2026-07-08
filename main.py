@@ -128,7 +128,19 @@ async def form(update: Update, context: ContextTypes.DEFAULT_TYPE):
         text += f"{home} {home_score}:{away_score} {away}\n"
 
     await update.message.reply_text(text)
+def get_team_id(team_name):
 
+    url = f"https://v3.football.api-sports.io/teams?search={team_name}"
+
+    r = requests.get(url, headers=HEADERS)
+    data = r.json()
+
+    response = data.get("response", [])
+
+    if not response:
+        return None
+
+    return response[0]["team"]["id"]
 async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
