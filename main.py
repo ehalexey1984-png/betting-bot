@@ -139,8 +139,12 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "Формат:\n\nСсылка\nРынок\nКоэффициент"
         )
         return
-    match_name = parts[0].strip()
-    market = parts[1].strip()
+    home_team = parts[0].strip()
+    away_team = parts[1].strip()
+
+    match_name = f"{home_team} - {away_team}"
+
+    market = parts[2].strip()
 
     try:
         odds = float(parts[2].strip())
