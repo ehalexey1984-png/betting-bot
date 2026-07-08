@@ -153,7 +153,12 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     home_team = parts[0].strip()
     away_team = parts[1].strip()
+    home_id = get_team_id(home_team)
+away_id = get_team_id(away_team)
 
+    if home_id is None or away_id is None:
+        await update.message.reply_text("Не удалось найти одну из команд")
+        return
     match_name = f"{home_team} - {away_team}"
 
     market = parts[2].strip()
