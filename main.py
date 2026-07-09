@@ -136,6 +136,13 @@ def get_team_id(team_name):
     data = r.json()
 
     response = data.get("response", [])
+
+    if not response:
+        return None
+
+    return response[0]["team"]["id"]
+
+
 def get_last5(team_id):
 
     url = f"https://v3.football.api-sports.io/fixtures?team={team_id}&last=5"
@@ -144,10 +151,6 @@ def get_last5(team_id):
     data = r.json()
 
     return data.get("response", [])
-    if not response:
-        return None
-
-    return response[0]["team"]["id"]
 async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
