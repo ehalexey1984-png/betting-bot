@@ -171,41 +171,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     book_probability = 100 / odds
 
-    if "П1" in market:
-        probability = book_probability + 3
-
-    elif "П2" in market:
-        probability = book_probability + 2
-
-    elif "1Х" in market:
-        probability = book_probability + 2
-
-    elif "Х2" in market:
-        probability = book_probability + 2
-
-    elif "12" in market:
-        probability = book_probability + 2
-
-    elif "ТБ 1.5" in market:
-        probability = book_probability + 4
-
-    elif "ТМ 1.5" in market:
-        probability = book_probability + 4
-
-    elif "ТБ 2.5" in market:
-        probability = book_probability + 3
-
-    elif "ТМ 2.5" in market:
-        probability = book_probability + 3
-
-    elif "ТБ 3.5" in market:
-        probability = book_probability + 2
-
-    elif "ТМ 3.5" in market:
-        probability = book_probability + 2
-
-    elif "ОЗ Да" in market:
-        book_probability = 100 / odds
+    
 
     if "П1" in market:
         probability = book_probability + 3
