@@ -18,8 +18,7 @@ results = {
     "losses": 0,
     "profit": 0
 }
-HEADERS = {
-    "x-apisports-key": API_FOOTBALL_KEY
+HEADERS = {"X-Auth-Token": FOOTBALL_API_KEY}
 }
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
