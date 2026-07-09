@@ -152,6 +152,7 @@ def get_last5(team_id):
 
     matches = data.get("response", [])
 
+    print(data)
     return matches[-5:]
 async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
