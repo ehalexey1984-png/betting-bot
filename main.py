@@ -47,10 +47,9 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     for match in fixtures:
 
-        home = match["teams"]["home"]["name"]
-        away = match["teams"]["away"]["name"]
-
-        league = match["league"]["name"]
+        home = match["homeTeam"]["name"]
+        away = match["awayTeam"]["name"]
+        league = match["competition"]["name"]
 
         text += f"{league}\n{home} - {away}\n\n"
 
