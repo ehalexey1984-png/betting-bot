@@ -37,7 +37,7 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     data = r.json()
 
-    fixtures = data.get("response", [])
+    fixtures = data.get("matches", [])
 
     if not fixtures:
         await update.message.reply_text("Матчей не найдено")
