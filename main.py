@@ -19,7 +19,7 @@ results = {
     "profit": 0
 }
 HEADERS = {"X-Auth-Token": FOOTBALL_API_KEY}
-}
+
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Бот запущен. Используй /today")
