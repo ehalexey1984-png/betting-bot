@@ -160,6 +160,9 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     home_team = parts[0].strip()
     away_team = parts[1].strip()
+    await update.message.reply_text(
+        f"Home: '{home_team}'\nAway: '{away_team}'"
+    )
     home_id = get_team_id(home_team)
     away_id = get_team_id(away_team)
 
