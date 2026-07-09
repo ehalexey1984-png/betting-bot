@@ -136,7 +136,14 @@ def get_team_id(team_name):
     data = r.json()
 
     response = data.get("response", [])
+def get_last5(team_id):
 
+    url = f"https://v3.football.api-sports.io/fixtures?team={team_id}&last=5"
+
+    r = requests.get(url, headers=HEADERS)
+    data = r.json()
+
+    return data.get("response", [])
     if not response:
         return None
 
