@@ -271,9 +271,10 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         verdict = "➖ Почти по линии"
     else:
         verdict = "❌ Нет валуя"
-        await update.message.reply_text(
-            f"{home_team} ID={home_id}\n{away_team} ID={away_id}"
-)
+
+    await update.message.reply_text(
+        f"{home_team} ID={home_id}\n{away_team} ID={away_id}"
+    )
     return
     answer = (
         f"Матч: {match_name}\n\n"
