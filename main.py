@@ -35,11 +35,7 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
     r = requests.get(url, headers=HEADERS)
     
 
-    await update.message.reply_text(str(r.status_code))
-
-    await update.message.reply_text(r.text[:350])
-
-    return
+    
     data = r.json()
 
     fixtures = data.get("response", [])
