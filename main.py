@@ -29,7 +29,7 @@ async def today(update: Update, context: ContextTypes.DEFAULT_TYPE):
     from datetime import datetime
 
     today = datetime.now().strftime("%Y-%m-%d")
-    url = f"https://v3.football.api-sports.io/fixtures?date={today}"
+    url = "https://api.football-data.org/v4/matches"
 
     r = requests.get(url, headers=HEADERS)
     
