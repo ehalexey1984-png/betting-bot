@@ -157,29 +157,22 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     home_team = parts[0].strip()
     away_team = parts[1].strip()
-    await update.message.reply_text(
-        f"Home: '{home_team}'\nAway: '{away_team}'"
-    )
     home_id = get_team_id(home_team)
     away_id = get_team_id(away_team)
+
+    if home_id is None or away_id is None:
+        await update.message.reply_text("Не удалось найти одну из команд")
+        return
+
     home_matches = get_last5(home_id)
     away_matches = get_last5(away_id)
 
-await update.message.reply_text(
-    f"{home_team}: {len(home_matches)} матчей\n"
-    f"{away_team}: {len(away_matches)} матчей"
-)
-return
-if home_id is None or away_id is None:
-        await update.message.reply_text("Не удалось найти одну из команд")
-        return
-    home_matches = get_last5(home_id)
-    away_matches = get_last5(away_id)
     await update.message.reply_text(
         f"{home_team}: {len(home_matches)} матчей\n"
         f"{away_team}: {len(away_matches)} матчей"
     )
     return
+
     match_name = f"{home_team} - {away_team}"
 
     market = parts[2].strip()
