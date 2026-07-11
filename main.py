@@ -145,7 +145,7 @@ def get_last5(team_id):
     data = r.json()
 
     return data.get("matches", [])
-def calculate_form(matches):
+def calculate_form(matches, team_id):
 
     wins = 0
     draws = 0
