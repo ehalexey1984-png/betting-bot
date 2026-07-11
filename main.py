@@ -230,7 +230,18 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     book_probability = 100 / odds
+    home_points = home_form["wins"] * 3 + home_form["draws"]
+    away_points = away_form["wins"] * 3 + away_form["draws"]
 
+    home_strength = (
+        home_points
+        + (home_form["gf"] - home_form["ga"])
+)
+
+away_strength = (
+    away_points
+    + (away_form["gf"] - away_form["ga"])
+)
     
 
     if "П1" in market:
