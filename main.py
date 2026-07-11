@@ -217,11 +217,20 @@ async def analyze(uasync def analyze(update: Update, context: ContextTypes.DEFAU
     away_matches = get_last5(away_id)
     home_form = calculate_form(home_matches, home_id)
     away_form = calculate_form(away_matches, away_id)
-    await update.message.reply_text(
-        f"{home_team}: {len(home_matches)} матчей\n"
-        f"{away_team}: {len(away_matches)} матчей"
-    )
-    return
+        await update.message.reply_text(
+            f"{home_team}\n"
+            f"Победы: {home_form['wins']}\n"
+            f"Ничьи: {home_form['draws']}\n"
+            f"Поражения: {home_form['losses']}\n"
+            f"Голы: {home_form['gf']}:{home_form['ga']}\n\n"
+            f"{away_team}\n"
+            f"Победы: {away_form['wins']}\n"
+            f"Ничьи: {away_form['draws']}\n"
+            f"Поражения: {away_form['losses']}\n"
+            f"Голы: {away_form['gf']}:{away_form['ga']}"
+        )
+        return
+    
 
     match_name = f"{home_team} - {away_team}"
 
