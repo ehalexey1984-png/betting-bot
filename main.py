@@ -238,7 +238,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
         + (home_form["gf"] - home_form["ga"])
 )
 
-away_strength = (
+    away_strength = (
     away_points
     + (away_form["gf"] - away_form["ga"])
 )
