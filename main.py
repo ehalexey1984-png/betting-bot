@@ -124,30 +124,27 @@ async def form(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(text)
 def get_team_id(team_name):
 
-    url = f"https://v3.football.api-sports.io/teams?search={team_name}"
+    url = f"https://api.football-data.org/v4/teams?name={team_name}"
 
     r = requests.get(url, headers=HEADERS)
     data = r.json()
 
-    response = data.get("response", [])
+    teams = data.get("teams", [])
 
-    if not response:
+    if not teams:
         return None
 
-    return response[0]["team"]["id"]
+    return teams[0]["id"]
 
 
 def get_last5(team_id):
 
-    url = f"https://v3.football.api-sports.io/fixtures?team={team_id}&season=2025&status=FT"
+    url = f"https://api.football-data.org/v4/teams/{team_id}/matches?limit=5"
 
     r = requests.get(url, headers=HEADERS)
     data = r.json()
 
-    matches = data.get("response", [])
-
-    print(data)
-    return matches[-5:]
+    return data.get("matches", [])
 async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
