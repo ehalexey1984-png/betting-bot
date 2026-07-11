@@ -145,7 +145,56 @@ def get_last5(team_id):
     data = r.json()
 
     return data.get("matches", [])
-async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def calculate_form(matches):
+
+    wins = 0
+    draws = 0
+    losses = 0
+
+    goals_for = 0
+    goals_against = 0
+
+    for m in matches:
+
+        home = m["homeTeam"]["name"]
+        away = m["awayTeam"]["name"]
+
+        home_goals = m["score"]["fullTime"]["home"]
+        away_goals = m["score"]["fullTime"]["away"]
+
+        if home_goals is None or away_goals is None:
+            continue
+
+        team_is_home = m["homeTeam"]["id"] == m["homeTeam"]["id"]
+
+        if team_is_home:
+
+            gf = home_goals
+            ga = away_goals
+
+        else:
+
+            gf = away_goals
+            ga = home_goals
+
+        goals_for += gf
+        goals_against += ga
+
+        if gf > ga:
+            wins += 1
+        elif gf == ga:
+            draws += 1
+        else:
+            losses += 1
+
+    return {
+        "wins": wins,
+        "draws": draws,
+        "losses": losses,
+        "gf": goals_for,
+        "ga": goals_against
+    }
+async def analyze(uasync def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
     parts = text.split("\n")
