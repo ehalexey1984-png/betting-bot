@@ -228,8 +228,8 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"Ничьи: {away_form['draws']}\n"
             f"Поражения: {away_form['losses']}\n"
             f"Голы: {away_form['gf']}:{away_form['ga']}"
-        )
-        return
+    )
+    return
     
 
     match_name = f"{home_team} - {away_team}"
