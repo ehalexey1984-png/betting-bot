@@ -165,7 +165,7 @@ def calculate_form(matches, team_id):
         if home_goals is None or away_goals is None:
             continue
 
-        team_is_home = m["homeTeam"]["id"] == m["homeTeam"]["id"]
+        team_is_home = m["homeTeam"]["id"] == team_id
 
         if team_is_home:
 
