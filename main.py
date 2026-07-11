@@ -201,11 +201,20 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if len(parts) < 4:
         await update.message.reply_text(
-            "Формат:\n\nСсылка\nРынок\nКоэффициент"
+            "Формат:\n\nКоманда 1\nКоманда 2\nРынок\nКоэффициент"
         )
         return
+
     home_team = parts[0].strip()
     away_team = parts[1].strip()
+    market = parts[2].strip()
+
+    try:
+        odds = float(parts[3].strip())
+    except:
+        await update.message.reply_text("Неверный коэффициент")
+        return
+
     home_id = get_team_id(home_team)
     away_id = get_team_id(away_team)
 
@@ -215,19 +224,9 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     home_matches = get_last5(home_id)
     away_matches = get_last5(away_id)
+
     home_form = calculate_form(home_matches, home_id)
     away_form = calculate_form(away_matches, away_id)
-    
-
-    match_name = f"{home_team} - {away_team}"
-
-    market = parts[2].strip()
-
-    try:
-        odds = float(parts[3].strip())
-    except:
-        await update.message.reply_text("Неверный коэффициент")
-        return
 
     book_probability = 100 / odds
 
@@ -236,57 +235,30 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     home_strength = home_points + (home_form["gf"] - home_form["ga"])
     away_strength = away_points + (away_form["gf"] - away_form["ga"])
-    
 
-        if "П1" in market:
+    if "П1" in market:
 
-           total = home_strength + away_strength
+        total = home_strength + away_strength
 
         if total == 0:
             probability = book_probability
         else:
-            probability = (home_strength / total) * 100
+            probability = home_strength / total * 100
 
     elif "П2" in market:
-        probability = book_probability + 2
 
-    elif "1Х" in market:
-        probability = book_probability + 2
+        total = home_strength + away_strength
 
-    elif "Х2" in market:
-        probability = book_probability + 2
-
-    elif "12" in market:
-        probability = book_probability + 2
-
-    elif "ТБ 1.5" in market:
-        probability = book_probability + 4
-
-    elif "ТМ 1.5" in market:
-        probability = book_probability + 4
-
-    elif "ТБ 2.5" in market:
-        probability = book_probability + 3
-
-    elif "ТМ 2.5" in market:
-        probability = book_probability + 3
-
-    elif "ТБ 3.5" in market:
-        probability = book_probability + 2
-
-    elif "ТМ 3.5" in market:
-        probability = book_probability + 2
-
-    elif "ОЗ Да" in market:
-        probability = book_probability + 2
-
-    elif "ОЗ Нет" in market:
-        probability = book_probability + 2
+        if total == 0:
+            probability = book_probability
+        else:
+            probability = away_strength / total * 100
 
     else:
         probability = book_probability
 
     probability = round(min(probability, 95), 1)
+
     fair_odds = round(100 / probability, 2)
     ev = round((probability / 100 * odds - 1) * 100, 2)
 
@@ -308,9 +280,13 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         verdict = "❌ Нет валуя"
 
-    
     answer = (
-        f"Матч: {match_name}\n\n"
+        f"Матч: {home_team} - {away_team}\n\n"
+        f"Форма:\n"
+        f"{home_team}: {home_form['wins']}-{home_form['draws']}-{home_form['losses']} "
+        f"({home_form['gf']}:{home_form['ga']})\n"
+        f"{away_team}: {away_form['wins']}-{away_form['draws']}-{away_form['losses']} "
+        f"({away_form['gf']}:{away_form['ga']})\n\n"
         f"Рынок: {market}\n"
         f"Коэффициент: {odds}\n\n"
         f"Вероятность: {probability}%\n"
@@ -321,8 +297,6 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     await update.message.reply_text(answer)
-
-         
 async def win(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     results["wins"] += 1
