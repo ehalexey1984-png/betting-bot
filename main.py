@@ -217,7 +217,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     away_matches = get_last5(away_id)
     home_form = calculate_form(home_matches, home_id)
     away_form = calculate_form(away_matches, away_id)
-        await update.message.reply_text(
+    await update.message.reply_text(
             f"{home_team}\n"
             f"Победы: {home_form['wins']}\n"
             f"Ничьи: {home_form['draws']}\n"
