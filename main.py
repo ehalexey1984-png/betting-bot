@@ -244,9 +244,9 @@ away_strength = (
 )
     
 
-    if "П1" in market:
+        if "П1" in market:
 
-        total = home_strength + away_strength
+            total = home_strength + away_strength
 
         if total == 0:
             probability = book_probability
