@@ -246,53 +246,53 @@ away_strength = (
 
     if "П1" in market:
 
-    total = home_strength + away_strength
+        total = home_strength + away_strength
 
-    if total == 0:
-        probability = book_probability
-    else:
-        probability = (home_strength / total) * 100
+        if total == 0:
+            probability = book_probability
+        else:
+            probability = (home_strength / total) * 100
 
-    elif "П2" in market:
-        probability = book_probability + 2
+        elif "П2" in market:
+            probability = book_probability + 2
 
-    elif "1Х" in market:
-        probability = book_probability + 2
+        elif "1Х" in market:
+            probability = book_probability + 2
 
-    elif "Х2" in market:
-        probability = book_probability + 2
+        elif "Х2" in market:
+            probability = book_probability + 2
 
-    elif "12" in market:
-        probability = book_probability + 2
+        elif "12" in market:
+            probability = book_probability + 2
 
-    elif "ТБ 1.5" in market:
-        probability = book_probability + 4
+        elif "ТБ 1.5" in market:
+            probability = book_probability + 4
 
-    elif "ТМ 1.5" in market:
-        probability = book_probability + 4
+        elif "ТМ 1.5" in market:
+            probability = book_probability + 4
 
-    elif "ТБ 2.5" in market:
-        probability = book_probability + 3
+        elif "ТБ 2.5" in market:
+            probability = book_probability + 3
 
-    elif "ТМ 2.5" in market:
-        probability = book_probability + 3
+        elif "ТМ 2.5" in market:
+            probability = book_probability + 3
 
-    elif "ТБ 3.5" in market:
-        probability = book_probability + 2
+        elif "ТБ 3.5" in market:
+            probability = book_probability + 2
 
-    elif "ТМ 3.5" in market:
-        probability = book_probability + 2
+        elif "ТМ 3.5" in market:
+            probability = book_probability + 2
 
-    elif "ОЗ Да" in market:
-        probability = book_probability + 2
+        elif "ОЗ Да" in market:
+            probability = book_probability + 2
 
-    elif "ОЗ Нет" in market:
-        probability = book_probability + 2
+        elif "ОЗ Нет" in market:
+            probability = book_probability + 2
 
-    else:
-        probability = book_probability
+        else:
+            probability = book_probability
 
-    probability = round(min(probability, 95), 1)
+        probability = round(min(probability, 95), 1)
 
     fair_odds = round(100 / probability, 2)
     ev = round((probability / 100 * odds - 1) * 100, 2)
