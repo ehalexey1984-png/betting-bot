@@ -194,7 +194,7 @@ def calculate_form(matches, team_id):
         "gf": goals_for,
         "ga": goals_against
     }
-async def analyze(uasync def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = update.message.text
     parts = text.split("\n")
