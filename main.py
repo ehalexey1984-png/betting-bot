@@ -244,7 +244,7 @@ away_strength = (
 )
     
 
-            if "П1" in market:
+        if "П1" in market:
 
         total = home_strength + away_strength
 
