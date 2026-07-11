@@ -245,7 +245,13 @@ away_strength = (
     
 
     if "П1" in market:
-        probability = book_probability + 3
+
+    total = home_strength + away_strength
+
+    if total == 0:
+        probability = book_probability
+    else:
+        probability = (home_strength / total) * 100
 
     elif "П2" in market:
         probability = book_probability + 2
