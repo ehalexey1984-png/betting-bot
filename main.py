@@ -162,8 +162,15 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     home_id = get_team_id(home_team)
     away_id = get_team_id(away_team)
+    home_matches = get_last5(home_id)
+    away_matches = get_last5(away_id)
 
-    if home_id is None or away_id is None:
+await update.message.reply_text(
+    f"{home_team}: {len(home_matches)} матчей\n"
+    f"{away_team}: {len(away_matches)} матчей"
+)
+return
+if home_id is None or away_id is None:
         await update.message.reply_text("Не удалось найти одну из команд")
         return
     home_matches = get_last5(home_id)
