@@ -127,16 +127,10 @@ def get_team_id(team_name):
     url = "https://api.football-data.org/v4/teams"
 
     r = requests.get(url, headers=HEADERS)
-    data = r.json()
 
-    teams = data.get("teams", [])
-
-    for team in teams:
-        if team["name"].lower() == team_name.lower():
-            return team["id"]
+    print(r.text)
 
     return None
-
 
 def get_last5(team_id):
 
