@@ -124,17 +124,18 @@ async def form(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(text)
 def get_team_id(team_name):
 
-    url = f"https://api.football-data.org/v4/teams?name={team_name}"
+    url = "https://api.football-data.org/v4/teams"
 
     r = requests.get(url, headers=HEADERS)
     data = r.json()
 
     teams = data.get("teams", [])
 
-    if not teams:
-        return None
+    for team in teams:
+        if team["name"].lower() == team_name.lower():
+            return team["id"]
 
-    return teams[0]["id"]
+    return None
 
 
 def get_last5(team_id):
